@@ -7,7 +7,9 @@ const User = require("./models/user").User;
 /* manejador de sesiones */
 const session = require("express-session");
 /* incorporar la ruta /app */
-const router_app = require("./router_app");
+const router_app = require("./routes/app");
+const router_index = require("./routes/index");
+const router_category = require("./routes/category");
 /* usar el middleware de session */
 const session_middleware = require("./middlewares/session");
 
@@ -29,53 +31,11 @@ app.use(session({
 
 app.set('view engine', 'pug');
 
-app.get('/', function(req, res) {
-    console.log(req.session.user_id);
-    res.render("index");
-});
-
-app.get('/signup', function(req, res) {
-    User.find(function(err, doc) {
-        console.log(doc);
-        res.render("signup");
-    });
-});
-
-app.get('/login', function(req, res) {
-    res.render('login');
-})
-
-app.post('/users', function(req, res) {
-    let user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        password_confirmation: req.body.password_confirmation,
-        username: req.body.username
-    });
-    //el metodo save, sirve para guardar. Es asyncrono
-    //la primera se ejecuta si todo salio bien, la segunda si hubo errores
-    user.save().then((us) => {
-        res.send("Guardamos el usuario exitosamente");
-    }), (err) => {
-        if (err) {
-            console.log(String(err));
-            res.send("No pudimos guardar la información, verifique la misma");
-        };
-    }
-});
-
-app.post('/sessions', function(req, res) {
-    //nos devuelve un arreglo de argumentos que nos devuelve la condicion
-    //nos devuelve un alemento q cumple la condicion
-    User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
-        req.session.user_id = user._id;
-        res.redirect("/app");
-    });
-});
-
+/* Rutas */
+app.use("/", router_index);
 app.use("/app", session_middleware);
 app.use("/app", router_app);
-
-
+app.use("/category", session_middleware);
+app.use("/category", router_category);
 
 app.listen(8080);

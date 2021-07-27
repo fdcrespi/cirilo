@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-mongoose.connect("mongodb://localhost/db_fotos", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost/cirilo", { useNewUrlParser: true, useUnifiedTopology: true });
 
 /* Las validaciones en mongoose se hace a nivel de schema */
 

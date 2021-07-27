@@ -1,0 +1,21 @@
+extends ../layout.pug
+block contenido
+    h2 Listado de categorias
+    form(action="/category" method="post" class="d-flex justify-content-center")
+        div(class="row g-3 align-items-center")
+            div.col-auto
+                label(for="categoria" class="sr-only") Categoria
+            div.col-auto
+                input(type="text" class="form-control" name="categoria" id="categoria" placeholder="Categoria")
+            div.col-auto
+                input(type="submit" class="btn btn-primary mb-2" value="Agregar")
+
+    table(class="table table-striped")
+        thead
+            tr 
+                td Nombre
+        tbody
+            for i in categories
+                tr
+                    td #{i.name}
+    

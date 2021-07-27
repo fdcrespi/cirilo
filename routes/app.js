@@ -3,6 +3,8 @@
 const express = require('express');
 /* Es un objeto router definido por express para definir rutas */
 const router = express.Router();
+/*Importo los modelos creados */
+const User = require("../models/user").User;
 
 /* /app/ */
 

@@ -1,21 +1,39 @@
 extends ../layout.pug
 block contenido
-    h2 Listado de categorias
+  div.container
+    h2.text-center Listado de categorias
     form(action="/category" method="post" class="d-flex justify-content-center")
-        div(class="row g-3 align-items-center")
-            div.col-auto
-                label(for="categoria" class="sr-only") Categoria
-            div.col-auto
-                input(type="text" class="form-control" name="categoria" id="categoria" placeholder="Categoria")
-            div.col-auto
-                input(type="submit" class="btn btn-primary mb-2" value="Agregar")
+      div(class="row g-3 align-items-center")
+        div.col-auto
+          label(for="categoria" class="sr-only") Categoria
+        div.col-auto
+          input(type="text" class="form-control" name="categoria" id="categoria" placeholder="Categoria")
+        div.col-auto
+          input(type="submit" class="btn btn-primary mb-2" value="Agregar")
 
-    table(class="table table-striped")
-        thead
-            tr 
-                td Nombre
-        tbody
-            for i in categories
-                tr
-                    td #{i.name}
-    
+    table(class="table table-sm table-striped table-hover ")
+      thead
+        tr 
+          td Nombre
+          td
+      tbody
+        for i in categories
+          tr
+            td
+              if (i._id == idCategory)
+                form(action="/category/"+i._id+"?_method=PUT" method="post")
+                  div(class="d-flex justify-content-around")
+                    div.col-6
+                      input(type="text" name="categoryEdit" value=""+i.name+"")
+                    div.col-6
+                      input(type="submit" class="btn btn-sm btn-warning" value="Guardar")
+                      a(href="/category" class="btn btn-danger btn-sm") Cancelar
+              else
+                div(class="d-flex justify-content-around")
+                  div.col-6
+                    p.m-0 #{i.name}
+                  div.col-6
+                    a(href="/category/"+i._id class="btn btn-sm btn-warning") Modificar
+                    form(action="/category/"+i._id+"?_method=DELETE" method="post" class="btn btn-sm p-0 border-0")
+                      input(type="submit" value="Eliminar" class="btn btn-danger btn-sm")
+      

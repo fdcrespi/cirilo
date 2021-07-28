@@ -12,12 +12,16 @@ const router_index = require("./routes/index");
 const router_category = require("./routes/category");
 /* usar el middleware de session */
 const session_middleware = require("./middlewares/session");
+/** Para pasar los parametros por link */
+const methodOverride = require('method-override')
 
 app.use(express.static(__dirname + '/public'));
 //app.use("/estatico", express.static('public'));
 /* para leer parametros de un form */
 app.use(express.json()); // para peticiones en application/json
 app.use(express.urlencoded({ extended: true })); //para peticiones normales con extended le decimos el algoritmo, con true hacemos parsing con mas cosas 
+
+app.use(methodOverride('_method'))
 
 /** para la session */
 app.use(session({

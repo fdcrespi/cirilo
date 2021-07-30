@@ -44,7 +44,7 @@ router.post('/sessions', function(req, res) {
     //nos devuelve un alemento q cumple la condicion
     User.findOne({ email: req.body.email, password: req.body.password }, function(err, user) {
         req.session.user_id = user._id;
-        res.redirect("/app");
+        res.redirect("/app", {id: req.session.user_id});
     });
 });
 

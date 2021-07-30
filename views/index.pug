@@ -1,6 +1,19 @@
 extends ./layout.pug
 block contenido 
-    div(class="col-md-8 remove-float center-block text-center big-top-space")
-        h1 Bienvenido a Comment Photo
-        a.right-space(href="/login") iniciar sesion
-        a(href="/signup") Registro
+  nav.navbar.navbar-expand-lg.navbar-light.bg-transparent
+    .container-fluid
+      a.navbar-brand(href="/") Cirilo
+      button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse(id="navbarNav")
+        ul.navbar-nav
+          li.nav-item.active
+            a.nav-link Home
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link Features      
+          li.nav-item
+            a.nav-link Pricing
+          if id
+            li.nav-item
+              a.nav-link Admin

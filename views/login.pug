@@ -1,16 +1,14 @@
 extends ./layout.pug
 block contenido
-    div(class="col-md-6 remove-float center-block big-top-space")
-        form(action="/sessions" method="POST")
-            div(class="form-group")
-                label(for="email") Email
-                input(type="text" name="email" placeholder="Email" class="form-control")
-            div(class="form-group")
-                label(for="password") Password 
-                input(type="password" name="password" placeholder="Password" class="form-control") 
-            div.row(class="top-space")
-                div(class="col-xs-12 col-sm-6")
-                    input(type="submit" value="Iniciar sesion" class="btn btn-success")
-                div(class="col-xs-12 col-sm-6 text-right")
-                    a(href="/signup") No tengo cuenta
-            
+  .container.min-vh-100
+    .container.min-vh-100.d-flex.justify-content-center.align-items-center
+      form.col-6(action="/sessions" method="POST")
+        .form-group
+          label(for="email") Email
+          input.form-control(name="email" type="email" placeholder="Email")
+        .form-group
+          label(for="pass") Contraseña  
+          input.form-control(name="pass" type="password" placeholder="Contraseña")
+        .form-group.d-flex.justify-content-between.mt-2
+          button.btn.btn-success(type="submit") Iniciar sesion
+          a.btn.btn-outline-primary(href="/signup") No tengo cuenta

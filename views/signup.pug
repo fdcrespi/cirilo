@@ -1,22 +1,17 @@
 extends ./layout.pug
 block contenido
-    div(class="col-md-6 remove-float center-block big-top-space")
-        form(action="/users" method="POST")
-            div(class="form-group")
-                label(for="email") Email
-                input(type="text" name="email" placeholder="Email" class="form-control")
-            div(class="form-group")
-                label(for="password") Password 
-                input(type="password" name="password" placeholder="Password" class="form-control")
-            div(class="form-group")
-                label(for="password_confirmation") Confirma Contraseña
-                input(type="password" name="password_confirmation" placeholder="Pass confirm" class="form-control")
-            div(class="form-group")
-                label(for="username") username
-                input(type="text", name="username" placeholder="Username" class="form-control") 
-            div.row(class="top-space")
-                div(class="col-xs-12 col-sm-6")
-                    input(type="submit" value="Registrarme" class="btn btn-success")
-                div(class="col-xs-12 col-sm-6 text-right")
-                    a(href="/login") Ya tengo cuenta
-            
+  .container.min-vh-100
+    .container.min-vh-100.d-flex.justify-content-center.align-items-center
+      form.col-6(action="/users" method="POST")
+        .form-group
+          label(for="email") Usuario
+          input.form-control(name="email" type="email" placeholder="Email")
+        .form-group
+          label(for="password") Contraseña  
+          input.form-control(name="password" type="password" placeholder="Contraseña")
+        .form-group
+          label(for="password_confirmation") Confirmar contraseña
+          input.form-control(name="password_confirmation" type="password" placeholder="Confirmar contraseña")
+        .form-group.d-flex.justify-content-between.mt-2
+          input.btn.btn-success(type="submit" value="Registrarme")
+          a.btn.btn-outline-primary(href="/login") Ya tengo cuenta

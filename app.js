@@ -2,16 +2,9 @@
 
 const express = require("express");
 const app = express();
-/*Importo los modelos creados */
-const User = require("./models/user").User;
 /* manejador de sesiones */
 const session = require("express-session");
-/* incorporar la ruta /app */
-const router_app = require("./routes/app");
-const router_index = require("./routes/index");
-const router_category = require("./routes/category");
-/* usar el middleware de session */
-const session_middleware = require("./middlewares/session");
+
 /** Para pasar los parametros por link */
 const methodOverride = require('method-override')
 
@@ -35,11 +28,7 @@ app.use(session({
 
 app.set('view engine', 'pug');
 
-/* Rutas */
-app.use("/", router_index);
-app.use("/app", session_middleware);
-app.use("/app", router_app);
-app.use("/category", session_middleware);
-app.use("/category", router_category);
+app.use("/", require("./routes/routes"));
+
 
 app.listen(8080);
